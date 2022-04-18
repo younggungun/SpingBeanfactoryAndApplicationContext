@@ -20,9 +20,13 @@ public class SpingBeanfactoryAndApplicationContextApplication {
         defaultSingletonBeanRegistry.setAccessible(true);
         ConfigurableListableBeanFactory beanFactory = run.getBeanFactory();
         Map<String,Object> map = (Map<String, Object>) defaultSingletonBeanRegistry.get(beanFactory);
-        map.forEach((k,v) ->
+        /*map.forEach((k,v) ->
             System.out.println("key:"+k+">>>>>>>>>>"+"value:"+v)
-        );
+        );*/
+        map.entrySet().stream().filter(e -> e.getKey().startsWith("user"))//start得小写
+                .forEach(e -> {
+                    System.out.println(e.getKey()+">>>>>>>>>>>>>>>>>>>"+e.getValue());
+                });
     }
 
 }
